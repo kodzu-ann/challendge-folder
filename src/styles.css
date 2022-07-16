@@ -1,0 +1,141 @@
+body {
+  background: linear-gradient(
+    110.2deg,
+    rgb(99, 192, 227) 5.3%,
+    rgb(98, 72, 194) 100.2%
+  );
+  color: white;
+  max-width: 95%;
+  margin: 0 auto;
+
+  padding: 10px;
+}
+header {
+  font-family: Poppins;
+  font-size: 78px;
+  line-height: 1.5;
+}
+
+.units {
+  font-size: 50px;
+}
+
+.units a {
+  font-size: 50px;
+  text-decoration: none;
+  color: white;
+}
+
+.units a:hover {
+  color: #16324f;
+  font-weight: 600;
+}
+
+ul {
+  font-size: 20px;
+  list-style: none;
+  text-align: left;
+}
+li:hover {
+  color: #16324f;
+  transition: all 250ms ease-in-out;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 90px;
+  text-transform: capitalize;
+}
+
+.date {
+  font-size: 34px;
+  color: #16324f;
+  font-weight: 600;
+}
+.sun {
+  font-size: 17px;
+}
+.sun:hover {
+  color: #16324f;
+  transition: all 200ms ease-in-out;
+}
+footer {
+  font-size: 30px;
+  padding-top: 50px;
+  display: block;
+
+  border: #55828b;
+}
+
+.week-days {
+  font-family: PT Mono;
+  margin: 10px;
+  display: block;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.24);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.8px);
+  -webkit-backdrop-filter: blur(8.8px);
+  border: 0.8зч solid rgba(255, 255, 255, 0.23);
+}
+.week-days:hover {
+  transition: all 250ms ease-in-out;
+  background-color: rgba(0, 0, 0, 0.25);
+  color: #ffff;
+  cursor: pointer;
+}
+.icon:hover {
+  animation: shake 0.8s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+
+  50% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+#search-form {
+  width: 90%;
+  display: inline-flex;
+  position: relative;
+  background: #e2fdff;
+  line-height: 1.5;
+  margin-top: 50px;
+  margin-left: 5%;
+  border-radius: 10px;
+  transition: all 200ms ease-in-out;
+  font-family: monospace;
+  border: none;
+}
+
+#search-text-input {
+  width: 1500px;
+  line-height: 1.8;
+  border-radius: 10px;
+  padding: 1px 30px;
+  border: none;
+}
+#submit-form {
+  position: absolute;
+  right: 16px;
+  top: 1px;
+  border-radius: 50px;
+  border: white;
+  outline: none;
+}
+
+.btn {
+  border-radius: 50px;
+}
