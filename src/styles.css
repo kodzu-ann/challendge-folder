@@ -59,7 +59,7 @@ h1 {
   color: #16324f;
   transition: all 200ms ease-in-out;
 }
-footer {
+.weather-forecast {
   font-size: 30px;
   padding-top: 50px;
   display: block;

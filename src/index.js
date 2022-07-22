@@ -41,6 +41,28 @@ let minutes = currentDate.getMinutes();
 let currentTime = `${hours} : ${minutes}`;
 showTime.innerHTML = `${currentTime}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = ` <div class="row g-0">`;
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` 
+     <div class="col-2 week-days">
+        ${day}
+        <br />
+        <span class="material-symbols-sharp icon"> partly_cloudy_day </span>
+      <div class="temp">13°C</div>
+      </div> 
+       
+  `;
+    forecastHTML = forecastHTML + `</div>  `;
+    forecastElement.innerHTML = forecastHTML;
+  });
+}
+
 let form = document.querySelector("#search-form");
 
 form.addEventListener("submit", handleSubmit);
@@ -105,6 +127,7 @@ function handleSubmit(event) {
 }
 
 searchByDefault("Kyiv");
+displayForecast();
 
 function getLocation(event) {
   event.preventDefault();
