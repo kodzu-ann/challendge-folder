@@ -79,28 +79,6 @@ let form = document.querySelector("#search-form");
 
 form.addEventListener("submit", handleSubmit);
 
-let celsius = document.querySelector("#celsius-temperature");
-
-let farenheit = document.querySelector("#fahrenheit-temperature");
-
-function showCelsius(event) {
-  event.preventDefault();
-
-  let currentTemperature = document.querySelector("#currentTemperature");
-  currentTemperature.innerHTML = `21`;
-}
-
-celsius.addEventListener("click", showCelsius);
-
-function showFahrenheit(event) {
-  event.preventDefault();
-
-  let currentTemperature = document.querySelector("#currentTemperature");
-
-  currentTemperature.innerHTML = `66`;
-}
-farenheit.addEventListener("click", showFahrenheit);
-
 function getForecast(coordinates) {
   console.log(coordinates);
 
