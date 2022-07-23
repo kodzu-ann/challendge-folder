@@ -64,7 +64,14 @@ function displayForecast(response) {
         ${formatDay(forecastDay.dt)}
         <br />
       
-        <span class="material-symbols-sharp icon"> partly_cloudy_day </span>
+        <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
+          class = "icon"
+          alt=""
+          width="42"
+        />
       <div class="temp">${Math.round(forecastDay.temp.eve)}°C</div>
       </div> 
        
@@ -80,8 +87,6 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
 function getForecast(coordinates) {
-  console.log(coordinates);
-
   let apiKey = "3f121476484fbe98889e89e05fa05cde";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
 
