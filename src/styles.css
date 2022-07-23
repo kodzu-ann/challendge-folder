@@ -5,7 +5,7 @@ body {
     rgb(98, 72, 194) 100.2%
   );
   color: white;
-  max-width: 95%;
+  max-width: 85%;
   margin: 0 auto;
 
   padding: 10px;
@@ -29,6 +29,7 @@ header {
 .units a:hover {
   color: #16324f;
   font-weight: 600;
+  cursor: default;
 }
 
 ul {
@@ -107,7 +108,7 @@ h1 {
   }
 }
 #search-form {
-  width: 90%;
+  width: 80%;
   display: inline-flex;
   position: relative;
   background: #e2fdff;

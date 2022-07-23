@@ -87,8 +87,6 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
 function displaySunriseAndSunset(response) {
-  console.log(response.data);
-
   document.querySelector("#sunrise").innerHTML = response.data.results.sunrise;
   document.querySelector("#sunset").innerHTML = response.data.results.sunset;
 }
@@ -103,10 +101,11 @@ function getForecast(coordinates) {
 }
 
 function showTemperature(response) {
-  document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#currentTemperature").innerHTML = Math.round(
     response.data.main.temp
   );
+  document.querySelector("#city").innerHTML = response.data.name;
+
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
   document.querySelector("#feelsLike").innerHTML = Math.round(
@@ -120,11 +119,28 @@ function showTemperature(response) {
   getForecast(response.data.coord);
 }
 
+function ShowFahrenheit(response) {
+  let fahrenhaitTemperature = Math.round(response.data.main.temp);
+  let temperatureElement = document.querySelector("#currentTemperature");
+  let FahrenheitElement = document.querySelector("#fahrenheit-temperature");
+
+  FahrenheitElement.addEventListener("click", replaceUnitsToFahrenheit);
+
+  function replaceUnitsToFahrenheit() {
+    temperatureElement.innerHTML = fahrenhaitTemperature;
+  }
+
+  celsiusElement = document.querySelector("#celsius-temperature");
+  celsiusElement.addEventListener("click", showTemperature);
+}
+
 function searchByDefault(city) {
   let apiKey = "3f121476484fbe98889e89e05fa05cde";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrlDefault = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrlForFahrenheit = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
-  axios.get(apiUrl).then(showTemperature);
+  axios.get(apiUrlDefault).then(showTemperature);
+  axios.get(apiUrlForFahrenheit).then(ShowFahrenheit);
 }
 
 function searchLocation(position) {
