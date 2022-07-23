@@ -41,23 +41,35 @@ let minutes = currentDate.getMinutes();
 let currentTime = `${hours} : ${minutes}`;
 showTime.innerHTML = `${currentTime}`;
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = ` <div class="row g-0">`;
-  let days = ["Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      ` 
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        ` 
      <div class="col-2 week-days">
-        ${day}
+        ${formatDay(forecastDay.dt)}
         <br />
+      
         <span class="material-symbols-sharp icon"> partly_cloudy_day </span>
-      <div class="temp">13°C</div>
+      <div class="temp">${Math.round(forecastDay.temp.eve)}°C</div>
       </div> 
        
   `;
+    }
   });
   forecastHTML = forecastHTML + `</div>  `;
   forecastElement.innerHTML = forecastHTML;
@@ -89,6 +101,15 @@ function showFahrenheit(event) {
 }
 farenheit.addEventListener("click", showFahrenheit);
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+
+  let apiKey = "3f121476484fbe98889e89e05fa05cde";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showTemperature(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#currentTemperature").innerHTML = Math.round(
@@ -103,6 +124,8 @@ function showTemperature(response) {
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
+
+  getForecast(response.data.coord);
 }
 
 function searchByDefault(city) {
@@ -127,7 +150,6 @@ function handleSubmit(event) {
 }
 
 searchByDefault("Kyiv");
-displayForecast();
 
 function getLocation(event) {
   event.preventDefault();
