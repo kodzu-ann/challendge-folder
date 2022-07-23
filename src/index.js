@@ -86,11 +86,20 @@ let form = document.querySelector("#search-form");
 
 form.addEventListener("submit", handleSubmit);
 
+function displaySunriseAndSunset(response) {
+  console.log(response.data);
+
+  document.querySelector("#sunrise").innerHTML = response.data.results.sunrise;
+  document.querySelector("#sunset").innerHTML = response.data.results.sunset;
+}
+
 function getForecast(coordinates) {
   let apiKey = "3f121476484fbe98889e89e05fa05cde";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
 
+  let apiURLSunriseAndSunset = `https://api.sunrise-sunset.org/json?lat=${coordinates.lat}&lng=${coordinates.lon}`;
   axios.get(apiUrl).then(displayForecast);
+  axios.get(apiURLSunriseAndSunset).then(displaySunriseAndSunset);
 }
 
 function showTemperature(response) {
