@@ -119,28 +119,11 @@ function showTemperature(response) {
   getForecast(response.data.coord);
 }
 
-function ShowFahrenheit(response) {
-  let fahrenhaitTemperature = Math.round(response.data.main.temp);
-  let temperatureElement = document.querySelector("#currentTemperature");
-  let FahrenheitElement = document.querySelector("#fahrenheit-temperature");
-
-  FahrenheitElement.addEventListener("click", replaceUnitsToFahrenheit);
-
-  function replaceUnitsToFahrenheit() {
-    temperatureElement.innerHTML = fahrenhaitTemperature;
-  }
-
-  celsiusElement = document.querySelector("#celsius-temperature");
-  celsiusElement.addEventListener("click", showTemperature);
-}
-
 function searchByDefault(city) {
   let apiKey = "3f121476484fbe98889e89e05fa05cde";
   let apiUrlDefault = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  let apiUrlForFahrenheit = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
   axios.get(apiUrlDefault).then(showTemperature);
-  axios.get(apiUrlForFahrenheit).then(ShowFahrenheit);
 }
 
 function searchLocation(position) {
